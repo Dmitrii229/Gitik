@@ -1,0 +1,60 @@
+<?php require('BD.php');?>
+<?php require('header.html');?>
+<?php $sql='SELECT * FROM `freinds`';
+$result = mysqli_query($mysqli,$sql);
+if (mysqli_errno($mysqli)) echo mysqli_error();
+
+?>
+
+     <table>
+        <thead>
+            <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+
+        <th>номер телефона</th>
+        <th>Email</th>
+        <th>адрес</th>
+        <th>номер дома</th>
+    </tr>
+         </thead>
+       <?php  while ($row=mysqli_fetch_assoc($result)): ?>
+        <tr>
+            
+
+            <th><?php echo $row ['firstname']?></th>
+            <th><?php echo $row ['name']?></th>
+            <th><?php echo $row ['lastname']?></th>
+            <th><?php echo $row ['email']?></th>
+            <th><?php echo $row ['phone']?></th>
+            <th><?php echo $row ['adress']?></th>
+            <th><?php echo $row ['user_id']?></th>
+        </tr>
+<?php endwhile; ?>
+            </table>
+
+            
+<div class="container2">
+
+<a>
+    <a href="content.php" class="btn btn-primary">Друзья</a>
+</div>
+
+<?php
+// support_button.php
+?>
+<?php
+$telegram = 'support_bot';
+?>
+<form action="https://web.telegram.org/a/#8502192215<?= htmlspecialchars($telegram) ?>" method="get" target="_blank">
+    <button type="submit" style="
+        background: #ff0000ff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+    ">
+        📞 Написать в поддержку
+    </button>
+</form>

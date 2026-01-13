@@ -1,0 +1,19 @@
+.container{
+    margin: 105px;
+    padding: 90px;
+    background-color: rgb(228, 189, 189);
+   
+}
+    table{
+    border-collapse: collapse;
+    width: 100%;
+    }
+    th,td{
+    border:1px solid rgb(255, 255, 255);
+    }
+    header{
+    margin: 105px;
+    padding: 90px;
+    background-color: rgb(228, 189, 189);
+   
+}30................................................................
