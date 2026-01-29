@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ AirSales PROMAX ✈️ | Супер-скидки на авиабилеты</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== СБРОС И ОСНОВНЫЕ СТИЛИ ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 50%, #7209b7 100%);
+            --gradient-reverse: linear-gradient(135deg, #7209b7 0%, #3a0ca3 50%, #4361ee 100%);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --shadow-light: 0 10px 30px rgba(67, 97, 238, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0e2a;
+            color: var(--light);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(67, 97, 238, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(58, 12, 163, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(114, 9, 183, 0.1) 0%, transparent 50%);
+            z-index: -2;
+        }
+
+        /* ===== ЗВЕЗДНЫЙ ФОН ===== */
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* ===== АНИМИРОВАННЫЕ САМОЛЕТЫ ===== */
+        .airplane {
+            position: fixed;
+            font-size: 40px;
+            z-index: -1;
+            filter: drop-shadow(0 0 10px rgba(76, 201, 240, 0.7));
+            animation: fly linear infinite;
+        }
+
+        @keyframes fly {
+            0% { transform: translateX(-100px) translateY(var(--y)) rotate(0deg); }
+            100% { transform: translateX(calc(100vw + 100px)) translateY(var(--y)) rotate(5deg); }
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: rgba(10, 14, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 28px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .logo i {
+            font-size: 36px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--success);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: var(--shadow-light);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(67, 97, 238, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* ===== ГЛАВНЫЙ БАННЕР ===== */
+        .hero {
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #4cc9f0, #f72585, #4361ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientText 5s infinite alternate;
+        }
+
+        @keyframes gradientText {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* ===== ПОИСК БИЛЕТОВ ===== */
+        .search-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 80px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow);
+        }
+
+        .search-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(90deg, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--success);
+            font-size: 18px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 18px 20px 18px 55px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--success);
+            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .search-btn {
+            grid-column: 1 / -1;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(67, 97, 238, 0.4);
+        }
+
+        /* ===== АКЦИИ И ПРЕДЛОЖЕНИЯ ===== */
+        .deals-section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .deal-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s;
+            position: relative;
+            height: 100%;
+        }
+
+        .deal-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: var(--success);
+        }
+
+        .deal-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(248, 37, 133, 0.3);
+        }
+
+        .deal-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .deal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .deal-card:hover .deal-image img {
+            transform: scale(1.1);
+        }
+
+        .deal-content {
+            padding: 25px;
+        }
+
+        .deal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .deal-destination {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .deal-price {
+            font-size: 28px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .deal-info {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .deal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .deal-date {
+            font-size: 14px;
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        /* ===== AI ПОМОЩНИК ===== */
+        .ai-assistant {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .ai-toggle {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.4);
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .ai-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 15px 40px rgba(67, 97, 238, 0.6);
+        }
+
+        .ai-panel {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 400px;
+            background: rgba(10, 14, 42, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            display: none;
+        }
+
+        .ai-panel.active {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .ai-title h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .ai-title p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .ai-messages {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 10px;
+        }
+
+        .ai-message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            line-height: 1.5;
+        }
+
+        .ai-message.bot {
+            background: rgba(67, 97, 238, 0.2);
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+        }
+
+        .ai-message.user {
+            background: rgba(247, 37, 133, 0.2);
+            border-bottom-right-radius: 5px;
+            margin-left: auto;
+        }
+
+        .ai-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .ai-input input {
+            flex: 1;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .ai-input input:focus {
+            outline: none;
+            border-color: var(--success);
+        }
+
+        .ai-send {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== ПРЕИМУЩЕСТВА ===== */
+        .features-section {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--success);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 32px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* ===== ТАЙМЕР АКЦИИ ===== */
+        .timer-section {
+            text-align: center;
+            padding: 80px 0;
+            background: var(--gradient);
+            margin: 100px 0;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffffff" opacity="0.1" d="M0,0 L100,0 L100,100 Z"/></svg>');
+            background-size: cover;
+        }
+
+        .timer-title {
+            font-size: 42px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timer-subtitle {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timer-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px 15px;
+            min-width: 120px;
+        }
+
+        .timer-value {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .timer-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 80px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--success);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--gradient);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        /* ===== АДАПТИВНОСТЬ ===== */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 52px;
+            }
+            
+            .deals-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .deals-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ai-panel {
+                width: calc(100vw - 40px);
+                right: -20px;
+            }
+            
+            .timer {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .timer-item {
+                min-width: calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Звездный фон -->
+    <div id="stars"></div>
+    
+    <!-- Анимированные самолеты -->
+    <div id="airplanes"></div>
+    
+    <!-- AI Помощник -->
+    <div class="ai-assistant">
+        <button class="ai-toggle" id="aiToggle">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="ai-panel" id="aiPanel">
+            <div class="ai-header">
+                <div class="ai-avatar">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <div class="ai-title">
+                    <h3>AirSales AI</h3>
+                    <p>Помощник по бронированию</p>
+                </div>
+            </div>
+            <div class="ai-messages" id="aiMessages">
+                <div class="ai-message bot">
+                    Привет! Я ваш AI-помощник AirSales. Помогу найти лучшие билеты и ответить на вопросы! ✈️
+                </div>
+            </div>
+            <div class="ai-input">
+                <input type="text" id="aiInput" placeholder="Спросите о билетах, скидках...">
+                <button class="ai-send" id="aiSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>AirSales PRO</span>
+                </div>
+                <nav class="nav-links">
+                    <a href="#search">Поиск</a>
+                    <a href="#deals">Акции</a>
+                    <a href="#features">Преимущества</a>
+                    <a href="#timer">Таймер</a>
+                    <a href="#about">О нас</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="#" class="btn btn-outline">
+                        <i class="fas fa-user"></i> Войти
+                    </a>
+                    <a href="#search" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Найти билеты
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>✈️ ЛЕТАЙТЕ ДЕШЕВЛЕ<br>ДО -90% НА АВИАБИЛЕТЫ</h1>
+                <p>Искусственный интеллект подбирает самые выгодные предложения среди 728 авиакомпаний. Гарантия лучшей цены или возврат двойной разницы!</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">728+</div>
+                        <div class="stat-label">Авиакомпаний</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2M+</div>
+                        <div class="stat-label">Билетов продано</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">-90%</div>
+                        <div class="stat-label">Максимальная скидка</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Поддержка</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Поиск билетов -->
+    <section class="search-section" id="search">
+        <div class="container">
+            <h2 class="search-title">🚀 НАЙДИТЕ ИДЕАЛЬНЫЙ БИЛЕТ</h2>
+            <div class="search-form">
+                <div class="form-group">
+                    <i class="fas fa-plane-departure"></i>
+                    <input type="text" class="form-control" placeholder="Откуда" id="fromCity">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-plane-arrival"></i>
+                    <input type="text" class="form-control" placeholder="Куда" id="toCity">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" class="form-control" id="departDate">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-calendar-check"></i>
+                    <input type="date" class="form-control" id="returnDate" placeholder="Обратно (опционально)">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-user-friends"></i>
+                    <select class="form-control" id="passengers">
+                        <option value="1">1 пассажир</option>
+                        <option value="2">2 пассажира</option>
+                        <option value="3">3 пассажира</option>
+                        <option value="4">4 пассажира</option>
+                        <option value="5+">5+ пассажиров</option>
+                    </select>
+                </div>
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-bolt"></i>
+                    НАЙТИ СУПЕР-ЦЕНЫ
+                </button>
+            </div>
+            <div class="quick-destinations">
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">
+                    🔥 Популярные направления:
+                    <span class="quick-city" data-city="Москва">Москва</span> •
+                    <span class="quick-city" data-city="Стамбул">Стамбул</span> •
+                    <span class="quick-city" data-city="Дубай">Дубай</span> •
+                    <span class="quick-city" data-city="Бангкок">Бангкок</span> •
+                    <span class="quick-city" data-city="Нью-Йорк">Нью-Йорк</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Акции и предложения -->
+    <section class="deals-section" id="deals">
+        <div class="container">
+            <h2 class="section-title">🔥 ГОРЯЩИЕ ПРЕДЛОЖЕНИЯ</h2>
+            <div class="deals-grid">
+                <!-- Карточки будут сгенерированы через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">⭐ ПОЧЕМУ ВЫБИРАЮТ НАС</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-поиск цен</h3>
+                    <p>Нейросеть анализирует цены и предсказывает снижения. Находим билеты дешевле на 40% в среднем.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Гарантия цены</h3>
+                    <p>Если найдете такой же билет дешевле — вернем двойную разницу в течение 24 часов.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Мгновенное бронирование</h3>
+                    <p>Полное оформление за 2 минуты. Поддержка всех видов оплаты, включая криптовалюты.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Поддержка</h3>
+                    <p>Круглосуточная помощь на 12 языках. Решаем любые вопросы за 15 минут или возвращаем деньги.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Таймер акции -->
+    <section class="timer-section" id="timer">
+        <div class="container">
+            <h2 class="timer-title">⏰ АКЦИЯ ЗАКАНЧИВАЕТСЯ ЧЕРЕЗ:</h2>
+            <p class="timer-subtitle">Скидка 60% на все направления при бронировании в течение:</p>
+            <div class="timer">
+                <div class="timer-item">
+                    <div class="timer-value" id="hours">24</div>
+                    <div class="timer-label">Часов</div>
+                </div>
+                <div class="timer-item">
+                    <div class="timer-value" id="minutes">59</div>
+                    <div class="timer-label">Минут</div>
+                </div>
+                <div class="timer-item">
+                    <div class="timer-value" id="seconds">59</div>
+                    <div class="timer-label">Секунд</div>
+                </div>
+            </div>
+            <button class="btn btn-primary" style="margin-top: 40px; background: white; color: #4361ee; font-size: 18px; padding: 18px 40px;">
+                <i class="fas fa-gift"></i> ПОЛУЧИТЬ СКИДКУ 60%
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="about">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>AirSales PRO</h3>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px; line-height: 1.6;">Ведущий агрегатор авиабилетов с AI-технологиями. Делаем путешествия доступными с 2015 года.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Направления</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Европа</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Азия</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Америка</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Ближний Восток</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Россия и СНГ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Помощь</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Центр поддержки</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Возврат билетов</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Правила бронирования</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> COVID-19 информация</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Партнерам</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Для авиакомпаний</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> API для разработчиков</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Партнерская программа</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Реклама на сайте</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Карьера в AirSales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 AirSales PROMAX. Все права защищены. Цены, указанные на сайте, не являются публичной офертой.</p>
+                <p style="margin-top: 10px; font-size: 12px;">Используя этот сайт, вы соглашаетесь с использованием файлов cookie и принимаете Политику конфиденциальности.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== ИНИЦИАЛИЗАЦИЯ =====
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            createAirplanes();
+            generateDeals();
+            startTimer();
+            initAI();
+            initSearch();
+            
+            // Плавная прокрутка для навигации
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        // ===== ЗВЕЗДНЫЙ ФОН =====
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 200;
+            
+            for(let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Случайные параметры
+                const size = Math.random() * 3 + 1;
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const duration = Math.random() * 5 + 3;
+                const delay = Math.random() * 5;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${x}vw`;
+                star.style.top = `${y}vh`;
+                star.style.opacity = Math.random() * 0.5 + 0.3;
+                star.style.setProperty('--duration', `${duration}s`);
+                star.style.animationDelay = `${delay}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // ===== АНИМИРОВАННЫЕ САМОЛЕТЫ =====
+        function createAirplanes() {
+            const airplanesContainer = document.getElementById('airplanes');
+            const airplaneCount = 5;
+            
+            for(let i = 0; i < airplaneCount; i++) {
+                const airplane = document.createElement('div');
+                airplane.classList.add('airplane');
+                airplane.innerHTML = '✈️';
+                
+                const y = Math.random() * 80 + 10;
+                const duration = Math.random() * 30 + 30;
+                const delay = Math.random() * 10;
+                
+                airplane.style.setProperty('--y', `${y}vh`);
+                airplane.style.animationDuration = `${duration}s`;
+                airplane.style.animationDelay = `${delay}s`;
+                airplane.style.fontSize = `${Math.random() * 20 + 30}px`;
+                
+                airplanesContainer.appendChild(airplane);
+            }
+        }
+
+        // ===== ГЕНЕРАЦИЯ АКЦИЙ =====
+        function generateDeals() {
+            const deals = [
+                {
+                    destination: "Москва → Дубай",
+                    price: "12 499 ₽",
+                    oldPrice: "34 999 ₽",
+                    discount: "-64%",
+                    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800",
+                    date: "15-25 мая",
+                    description: "Прямой рейс Emirates. Включен багаж 23кг + ручная кладь."
+                },
+                {
+                    destination: "Санкт-Петербург → Бангкок",
+                    price: "19 999 ₽",
+                    oldPrice: "52 000 ₽",
+                    discount: "-62%",
+                    image: "https://images.unsplash.com/photo-1552465011-b4e30bf7349d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800",
+                    date: "10-30 июня",
+                    description: "С пересадкой в Стамбуле. Thai Airways + Turkish Airlines."
+                },
+                {
+                    destination: "Екатеринбург → Нью-Йорк",
+                    price: "34 500 ₽",
+                    oldPrice: "89 999 ₽",
+                    discount: "-62%",
+                    image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800",
+                    date: "Июль-август",
+                    description: "Прямые рейсы Delta Air Lines. Специальное предложение!"
+                },
+                {
+                    destination: "Казань → Стамбул",
+                    price: "6 999 ₽",
+                    oldPrice: "18 500 ₽",
+                    discount: "-62%",
+                    image: "https://images.unsplash.com/photo-1527838832700-5059252407fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800",
+                    date: "Любые даты",
+                    description: "Ежедневные рейсы Turkish Airlines. Гибкие даты вылета."
+                },
+                {
+                    destination: "Новосибирск → Париж",
+                    price: "15 800 ₽",
+                    oldPrice: "41 000 ₽",
+                    discount: "-61%",
+                    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800",
+                    date: "Сентябрь-октябрь",
+                    description: "Air France с пересадкой в Москве. Включен 1 багаж."
+                },
+                {
+                    destination: "Краснодар → Токио",
+                    price: "28 900 ₽",
+                    oldPrice: "75 000 ₽",
+                    discount: "-61%",
+                    image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800",
+                    date: "Осень 2024",
+                    description: "ANA Airlines. Виза не требуется при транзите до 72 часов."
+                }
+            ];
+            
+            const dealsGrid = document.querySelector('.deals-grid');
+            
+            deals.forEach(deal => {
+                const dealCard = document.createElement('div');
+                dealCard.className = 'deal-card';
+                dealCard.innerHTML = `
+                    <div class="deal-badge">${deal.discount}</div>
+                    <div class="deal-image">
+                        <img src="${deal.image}" alt="${deal.destination}">
+                    </div>
+                    <div class="deal-content">
+                        <div class="deal-header">
+                            <div class="deal-destination">${deal.destination}</div>
+                            <div class="deal-price">${deal.price}</div>
+                        </div>
+                        <div class="deal-info">${deal.description}</div>
+                        <div class="deal-footer">
+                            <div class="deal-date"><i class="far fa-calendar-alt"></i> ${deal.date}</div>
+                            <div style="text-decoration: line-through; color: rgba(255,255,255,0.5); font-size: 14px;">
+                                ${deal.oldPrice}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Добавляем эффект при клике
+                dealCard.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                    
+                    // Показываем уведомление
+                    showNotification(`Билет ${deal.destination} добавлен в корзину!`);
+                });
+                
+                dealsGrid.appendChild(dealCard);
+            });
+        }
+
+        // ===== ТАЙМЕР ОБРАТНОГО ОТСЧЕТА =====
+        function startTimer() {
+            let hours = 24;
+            let minutes = 59;
+            let seconds = 59;
+            
+            const hoursElement = document.getElementById('hours');
+            const minutesElement = document.getElementById('minutes');
+            const secondsElement = document.getElementById('seconds');
+            
+            const timerInterval = setInterval(() => {
+                seconds--;
+                
+                if(seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                    
+                    if(minutes < 0) {
+                        minutes = 59;
+                        hours--;
+                        
+                        if(hours < 0) {
+                            clearInterval(timerInterval);
+                            // Перезапускаем таймер
+                            hours = 24;
+                            minutes = 59;
+                            seconds = 59;
+                        }
+                    }
+                }
+                
+                // Обновляем отображение
+                hoursElement.textContent = hours.toString().padStart(2, '0');
+                minutesElement.textContent = minutes.toString().padStart(2, '0');
+                secondsElement.textContent = seconds.toString().padStart(2, '0');
+                
+                // Анимация каждую секунду
+                secondsElement.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    secondsElement.style.transform = 'scale(1)';
+                }, 200);
+                
+            }, 1000);
+        }
+
+        // ===== AI ПОМОЩНИК =====
+        function initAI() {
+            const aiToggle = document.getElementById('aiToggle');
+            const aiPanel = document.getElementById('aiPanel');
+            const aiInput = document.getElementById('aiInput');
+            const aiSend = document.getElementById('aiSend');
+            const aiMessages = document.getElementById('aiMessages');
+            
+            // Переключение панели AI
+            aiToggle.addEventListener('click', function() {
+                aiPanel.classList.toggle('active');
+                if(aiPanel.classList.contains('active')) {
+                    aiInput.focus();
+                }
+            });
+            
+            // Отправка сообщения
+            function sendMessage() {
+                const message = aiInput.value.trim();
+                if(!message) return;
+                
+                // Добавляем сообщение пользователя
+                addMessage(message, 'user');
+                aiInput.value = '';
+                
+                // Имитируем ответ AI
+                setTimeout(() => {
+                    const response = getAIResponse(message);
+                    addMessage(response, 'bot');
+                }, 1000);
+            }
+            
+            // Отправка по Enter
+            aiInput.addEventListener('keypress', function(e) {
+                if(e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // Отправка по клику
+            aiSend.addEventListener('click', sendMessage);
+            
+            // Добавление сообщения в чат
+            function addMessage(text, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.className = `ai-message ${sender}`;
+                messageElement.textContent = text;
+                aiMessages.appendChild(messageElement);
+                aiMessages.scrollTop = aiMessages.scrollHeight;
+            }
+            
+            // Генерация ответов AI
+            function getAIResponse(message) {
+                const lowerMessage = message.toLowerCase();
+                
+                if(lowerMessage.includes('привет') || lowerMessage.includes('здравств')) {
+                    return 'Привет! Я ваш AI-помощник AirSales. Как я могу помочь с бронированием билетов? ✈️';
+                }
+                else if(lowerMessage.includes('скидк') || lowerMessage.includes('дешев')) {
+                    return 'Сейчас действуют скидки до 90%! Рекомендую посмотреть раздел "Горящие предложения". Там есть билеты в Дубай за 12 499₽ вместо 34 999₽! 🔥';
+                }
+                else if(lowerMessage.includes('москв') || lowerMessage.includes('дубай')) {
+                    return 'Москва-Дубай: от 12 499₽ с багажом! Вылеты с 15 по 25 мая. Прямой рейс Emirates. Хотите, забронирую для вас?';
+                }
+                else if(lowerMessage.includes('паспорт') || lowerMessage.includes('виза')) {
+                    return 'Для большинства направлений нужен загранпаспорт. Визовые требования уточняйте на сайте посольства. Могу помочь найти билеты в безвизовые страны! 🌍';
+                }
+                else if(lowerMessage.includes('багаж') || lowerMessage.includes('ручная кладь')) {
+                    return 'Обычно включен багаж 20-23кг + ручная кладь 5-10кг. Уточняйте у авиакомпании. Рекомендую Emirates или Turkish Airlines — у них щедрые нормы багажа! 🛄';
+                }
+                else if(lowerMessage.includes('отмен') || lowerMessage.includes('вернут')) {
+                    return 'Возврат зависит от тарифа. Эконом-тарифы часто невозвратные. Flex-тарифы можно отменить бесплатно. Уточню детали по конкретному билету!';
+                }
+                else if(lowerMessage.includes('спасибо') || lowerMessage.includes('благодар')) {
+                    return 'Всегда рад помочь! Удачных путешествий! Если будут вопросы — обращайтесь! 🌟';
+                }
+                else {
+                    const responses = [
+                        "Отличный вопрос! Рекомендую посмотреть раздел с горящими предложениями — там самые выгодные цены! 🔥",
+                        "Чтобы найти лучшую цену, укажите в форме поиска города вылета и прилета. Мой AI проанализирует цены за последние 30 дней! 🤖",
+                        "Сейчас лучшее время для бронирования! Цены снизились на 40% по сравнению с прошлым месяцем. Посоветую несколько вариантов?",
+                        "Для точного подбора укажите даты поездки. Я найду оптимальные варианты с пересадками и без! ✨",
+                        "Обратите внимание на таймер обратного отсчета — скоро закончится акция со скидкой 60%! ⏰"
+                    ];
+                    return responses[Math.floor(Math.random() * responses.length)];
+                }
+            }
+        }
+
+        // ===== ПОИСК БИЛЕТОВ =====
+        function initSearch() {
+            const searchBtn = document.getElementById('searchBtn');
+            const quickCities = document.querySelectorAll('.quick-city');
+            
+            // Обработка быстрого выбора города
+            quickCities.forEach(city => {
+                city.addEventListener('click', function() {
+                    const cityName = this.getAttribute('data-city');
+                    document.getElementById('toCity').value = cityName;
+                    showNotification(`Направление "${cityName}" выбрано! Ищу лучшие цены...`);
+                });
+            });
+            
+            // Основной поиск
+            searchBtn.addEventListener('click', function() {
+                const fromCity = document.getElementById('fromCity').value;
+                const toCity = document.getElementById('toCity').value;
+                const departDate = document.getElementById('departDate').value;
+                
+                if(!fromCity || !toCity || !departDate) {
+                    showNotification('Пожалуйста, заполните все обязательные поля!', 'error');
+                    return;
+                }
+                
+                // Показываем анимацию поиска
+                searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ИЩЕМ СУПЕР-ЦЕНЫ...';
+                searchBtn.disabled = true;
+                
+                // Имитируем поиск
+                setTimeout(() => {
+                    // Генерируем случайную цену
+                    const prices = [4999, 6999, 8999, 12999, 15999, 19999];
+                    const randomPrice = prices[Math.floor(Math.random() * prices.length)];
+                    const discount = Math.floor(Math.random() * 30) + 50;
+                    
+                    searchBtn.innerHTML = '<i class="fas fa-bolt"></i> НАЙТИ СУПЕР-ЦЕНЫ';
+                    searchBtn.disabled = false;
+                    
+                    showNotification(`🎉 Найдены билеты ${fromCity} → ${toCity} от ${randomPrice.toLocaleString()}₽! Скидка ${discount}%!`, 'success');
+                    
+                    // Показываем модальное окно с результатами
+                    showSearchResults(fromCity, toCity, randomPrice, discount);
+                }, 2000);
+            });
+        }
+
+        // ===== УВЕДОМЛЕНИЯ =====
+        function showNotification(message, type = 'success') {
+            // Создаем уведомление
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'error' ? 'linear-gradient(135deg, #ff595e, #c1121f)' : 'linear-gradient(135deg, #4cc9f0, #4361ee)'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+                max-width: 400px;
+                font-weight: 500;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Удаляем через 3 секунды
+            setTimeout(() => {
+                if(notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 3000);
+            
+            // Добавляем CSS анимации
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // ===== ПОКАЗ РЕЗУЛЬТАТОВ ПОИСКА =====
+        function showSearchResults(fromCity, toCity, price, discount) {
+            // Создаем модальное окно
+            const modal = document.createElement('div');
+            modal.className = 'search-results-modal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                backdrop-filter: blur(10px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: linear-gradient(135deg, #1a1f3a, #0a0e2a); padding: 40px; border-radius: 30px; max-width: 600px; width: 90%; border: 2px solid #4361ee; position: relative;">
+                    <button class="close-modal" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: white; font-size: 24px; cursor: pointer;">×</button>
+                    
+                    <h2 style="font-size: 32px; margin-bottom: 10px; background: linear-gradient(90deg, #4cc9f0, #4361ee); -webkit-background-clip: text; background-clip: text; color: transparent;">
+                        🎉 НАЙДЕНО ЛУЧШЕЕ ПРЕДЛОЖЕНИЕ!
+                    </h2>
+                    
+                    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; margin: 25px 0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700;">${fromCity} → ${toCity}</div>
+                                <div style="color: rgba(255,255,255,0.7);">Прямой рейс • Emirates • Эконом-класс</div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #f72585, #7209b7); padding: 10px 20px; border-radius: 50px; font-weight: 700;">
+                                -${discount}%
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 14px; color: rgba(255,255,255,0.7);">Цена за одного пассажира</div>
+                                <div style="font-size: 48px; font-weight: 800; background: linear-gradient(90deg, #4cc9f0, #4361ee); -webkit-background-clip: text; background-clip: text; color: transparent;">
+                                    ${price.toLocaleString()} ₽
+                                </div>
+                                <div style="text-decoration: line-through; color: rgba(255,255,255,0.5); font-size: 18px;">
+                                    ${(price * 100 / (100 - discount)).toLocaleString()} ₽
+                                </div>
+                            </div>
+                            
+                            <div style="text-align: right;">
+                                <div style="font-size: 14px; color: rgba(255,255,255,0.7);">Вы экономите</div>
+                                <div style="font-size: 32px; font-weight: 800; color: #4cc9f0;">
+                                    ${Math.floor(price * discount / (100 - discount)).toLocaleString()} ₽
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
+                        <div style="background: rgba(67, 97, 238, 0.1); padding: 15px; border-radius: 15px; text-align: center;">
+                            <div style="font-size: 14px; color: rgba(255,255,255,0.7);">Вылет</div>
+                            <div style="font-size: 18px; font-weight: 600;">15:30</div>
+                        </div>
+                        <div style="background: rgba(76, 201, 240, 0.1); padding: 15px; border-radius: 15px; text-align: center;">
+                            <div style="font-size: 14px; color: rgba(255,255,255,0.7);">Прилет</div>
+                            <div style="font-size: 18px; font-weight: 600;">21:45</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-book" style="width: 100%; padding: 20px; background: linear-gradient(135deg, #4361ee, #3a0ca3); border: none; border-radius: 15px; color: white; font-size: 20px; font-weight: 700; cursor: pointer; transition: all 0.3s; margin-top: 20px;">
+                        <i class="fas fa-lock"></i> ЗАБРОНИРОВАТЬ СО СКИДКОЙ ${discount}%
+                    </button>
+                    
+                    <div style="text-align: center; margin-top: 20px; color: rgba(255,255,255,0.5); font-size: 14px;">
+                        ⚡ Это предложение может исчезнуть в любой момент!
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Закрытие модального окна
+            modal.querySelector('.close-modal').addEventListener('click', function() {
+                modal.style.animation = 'fadeOut 0.3s ease forwards';
+                setTimeout(() => {
+                    if(modal.parentNode) {
+                        modal.parentNode.removeChild(modal);
+                    }
+                }, 300);
+            });
+            
+            // Бронирование
+            modal.querySelector('.btn-book').addEventListener('click', function() {
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> БРОНИРУЕМ...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    modal.remove();
+                    showNotification('🎊 ПОЗДРАВЛЯЕМ! Бронь успешно оформлена! Детали отправлены на email.', 'success');
+                }, 2000);
+            });
+            
+            // Анимации
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // ===== ПАРАЛЛАКС ЭФФЕКТ =====
+        document.addEventListener('mousemove', function(e) {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.querySelectorAll('.airplane').forEach((plane, index) => {
+                const speed = 0.05 * (index + 1);
+                plane.style.transform = `translateX(${x * 20}px) translateY(${y * 20}px)`;
+            });
+        });
+
+        // ===== АНИМАЦИЯ ПРИ ПРОКРУТКЕ =====
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Наблюдаем за элементами, которые должны анимироваться
+            document.querySelectorAll('.deal-card, .feature-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        }
+
+        // Инициализация анимаций при прокрутке
+        setTimeout(initScrollAnimations, 1000);
+    </script>
+</body>
+</html>

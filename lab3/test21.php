@@ -24,3 +24,4 @@ $XIX="Николай Павлович";
 if  (isset($_GET ['nikitka']))
 $vek = $_GET['nikitka'];
  echo'В '. $vek . ' веке царствовал ' . $$vek;
+  
