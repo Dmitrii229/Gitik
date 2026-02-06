@@ -1,0 +1,2 @@
+<?php
+$name = 'OIP.webp'
